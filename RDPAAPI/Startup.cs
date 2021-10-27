@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RDPA.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,10 @@ namespace RDPAAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IGeoIPService, GeoIPService>();
+           services.AddTransient<IRDPAService, RDPAService>();
             #region Swagger
             services.AddSwaggerGen(c =>
-            {
-                c.IncludeXmlComments(string.Format(@"{0}\RDPAAPI.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+            { 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",

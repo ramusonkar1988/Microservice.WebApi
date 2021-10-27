@@ -5,11 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\GeoIP.Model\GeoIP.Model.csproj" />
+    <ProjectReference Include="..\IPPing.Model\IPPing.Model.csproj" />
     <ProjectReference Include="..\RDPA.Model\RDPA.Model.csproj" />
+    <ProjectReference Include="..\ReverseDNS.Model\ReverseDNS.Model.csproj" />
   </ItemGroup>
 
 </Project>

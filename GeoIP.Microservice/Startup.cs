@@ -20,9 +20,9 @@ namespace GeoIP.Microservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-         //   services.AddControllers().AddNewtonsoftJson(options =>
-         //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+            //   services.AddControllers().AddNewtonsoftJson(options =>
+            //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            //services.AddControllers().AddJsonOptions();
             services.AddTransient<IGeoIPService, GeoIPService>();
             #region Swagger
             services.AddSwaggerGen(c =>
@@ -36,6 +36,7 @@ namespace GeoIP.Microservice
             });
             #endregion
             services.AddControllers();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

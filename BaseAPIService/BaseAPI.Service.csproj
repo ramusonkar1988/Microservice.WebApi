@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RDPA.Model\RDPA.Model.csproj" />
+    <ProjectReference Include="..\BaseAPIModel\BaseAPI.Model.csproj" />
   </ItemGroup>
 
 </Project>

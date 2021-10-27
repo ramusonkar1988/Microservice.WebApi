@@ -1,5 +1,4 @@
 {
-
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/geoip",
@@ -11,31 +10,9 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/geoip",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/domainstatus",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44374
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/domainstatus",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/openports",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44375
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/openports",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/ipping",
@@ -47,7 +24,9 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/ipping",
-      "UpstreamHttpMethod": [ "GET"]
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/rdpa",
@@ -59,8 +38,23 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/rdpa",
-      "UpstreamHttpMethod": [ "GET"]
-    } 
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/rdns",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44378
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rdns",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    }
   ]
-
 }
