@@ -5,6 +5,6 @@ namespace GeoIP.Service
 {
     public interface IGeoIPService
     {
-        Task<object> GetGeoIPDetailsAsync(string input = "");
+        Task<GeoIpModel> GetGeoIPDetailsAsync(string input = "");
     }
 }

@@ -1,3 +1,4 @@
+using IPPing.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,15 +26,15 @@ namespace IPPingAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IGeoIPService, GeoIPService>();
+            services.AddTransient<IPingService, PingService>();
             #region Swagger
             services.AddSwaggerGen(c =>
             {
-                c.IncludeXmlComments(string.Format(@"{0}\IPPingAPI.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+                 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "GeoIP Microservice API",
+                    Title = "Ping Microservice API",
                 });
             });
             #endregion

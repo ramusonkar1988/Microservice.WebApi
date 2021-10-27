@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BaseAPI.Model;
+using BaseAPI.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -14,37 +16,19 @@ namespace Microservice.BaseAPI.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        HttpClient client;
-        //The URL of the WEB API Service
-        string url = "https://localhost:44382/gateway/geoip";
-
-        //The HttpClient Class, this will be used for performing 
-        //HTTP Operations, GET, POST, PUT, DELETE
-        //Set the base address and the Header Formatter
-        public MainController()
+        private readonly IBaseAPIService baseAPIService;
+        public MainController(IBaseAPIService _baseAPIService)
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            baseAPIService = _baseAPIService;
         }
 
         [HttpGet]
-        public async Task<object> GetDetails()
+        public async Task<BaseAPIModel> GetDetails(string input)
         {
-            object result = null;
+            BaseAPIModel baseAPIModel = new BaseAPIModel();
             try
             {
-                
-                HttpResponseMessage responseMessage = await client.GetAsync(url);
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                    result = JsonConvert.DeserializeObject<List<object>>(responseData);
-
-
-                }
+                baseAPIModel = await baseAPIService.GetAPIDetails(input);
             }
             catch (Exception ex)
             {
@@ -52,7 +36,7 @@ namespace Microservice.BaseAPI.Controllers
                 throw;
             }
             
-            return  result;
+            return baseAPIModel;
         }
         
 

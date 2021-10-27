@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IPPing.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,16 @@ namespace IPPingAPI.Controllers
     [ApiController]
     public class IPPingController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        private readonly IPingService pingService;
+        public IPPingController(IPingService _pingService)
         {
-            return "IP Ping test";
+            pingService = _pingService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        { 
+            var result = await pingService.GetPingDetailsAsync();
+            return Ok(result);
         }
     }
 }
