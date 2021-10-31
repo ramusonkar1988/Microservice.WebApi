@@ -20,8 +20,7 @@ namespace GeoIP.Microservice.Controllers
         // GET: GeoIPController
         [HttpGet]
         public async Task<IActionResult> Get(string input)
-        {
-            input = "134.201.250.155";
+        { 
             var result= await geoIPService.GetGeoIPDetailsAsync(input);
             return Ok(result);
         }

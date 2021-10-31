@@ -34,6 +34,7 @@ namespace IPPing.Model
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public string type { get; set; }
+        public string ErrorMessage { get; set; }
     }
 
 

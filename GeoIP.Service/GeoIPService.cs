@@ -16,20 +16,29 @@ namespace GeoIP.Service
         /// <returns></returns>
         public async Task<GeoIpModel> GetGeoIPDetailsAsync(string input)
         {
+            if (string.IsNullOrEmpty(input)) { input = "8.8.8.8"; }
+                
             GeoIpModel geoIpModel =new GeoIpModel();
-            input = "http://ip-api.com/json/24.48.0.1";
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(input),
+                input = "http://ip-api.com/json/" + input;
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(input),
 
-            };
-            using (var response = await client.SendAsync(request))
+                };
+                using (var response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    geoIpModel = JsonConvert.DeserializeObject<GeoIpModel>(responseData);
+                }
+            }
+            catch (Exception ex)
             {
-                response.EnsureSuccessStatusCode();
-                var responseData = await response.Content.ReadAsStringAsync();
-                geoIpModel = JsonConvert.DeserializeObject<GeoIpModel>(responseData); 
+                geoIpModel.ErrorMessage = ex.Message.ToString();
             }
 
             return geoIpModel;

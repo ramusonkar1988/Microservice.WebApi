@@ -12,22 +12,29 @@ namespace IPPing.Service
     {
         public async Task<PingModel> GetPingDetailsAsync()
         {
-            PingModel pingModel = new PingModel();
-           string  input = "https://api.github.com/orgs/ping-api";
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
+            PingModel pingModel = new PingModel(); 
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(input),
+                string input = "https://api.github.com/orgs/ping-api";
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(input),
 
-            };
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var responseData = await response.Content.ReadAsStringAsync();
-                pingModel = JsonConvert.DeserializeObject<PingModel>(responseData);
+                };
+                using (var response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    pingModel = JsonConvert.DeserializeObject<PingModel>(responseData);
+                }
             }
-
+            catch (Exception ex)
+            {
+                pingModel.ErrorMessage = ex.Message.ToString();
+            }
+            
             return pingModel;
         }
     }

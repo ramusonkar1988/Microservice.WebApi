@@ -17,5 +17,6 @@ namespace GeoIP.Model
         public string status { get; set; }
         public string timezone { get; set; }
         public string zip { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

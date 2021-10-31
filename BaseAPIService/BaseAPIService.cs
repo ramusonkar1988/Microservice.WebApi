@@ -102,9 +102,9 @@ namespace BaseAPI.Service
             }
             return pingModel;
         }
-        private async Task<Root> GetRDPADetails(string input)
+        private async Task<RDPAModel> GetRDPADetails(string input)
         {
-            Root root = new Root();
+            RDPAModel root = new RDPAModel();
             try
             {
                 input = Url + RDPA;
@@ -119,7 +119,7 @@ namespace BaseAPI.Service
                 {
                     response.EnsureSuccessStatusCode();
                     var responseData =await response.Content.ReadAsStringAsync();
-                    root = JsonConvert.DeserializeObject<Root>(responseData);
+                    root = JsonConvert.DeserializeObject<RDPAModel>(responseData);
                 }
             }
             catch (Exception ex)

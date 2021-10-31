@@ -10,8 +10,9 @@ namespace BaseAPI.Model
     {
         public GeoIpModel GeoIpModel { get; set; }
         public ReverseDNSModel ReverseDNSModel { get; set; }
-        public Root RDPAModel { get; set; }
+        public RDPAModel RDPAModel { get; set; }
         public PingModel PingModel { get; set; }
+        public string ErrorMessage { get; set; }
 
     }
 }

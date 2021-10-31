@@ -8,6 +8,6 @@ namespace RDPA.Service
 {
    public interface IRDPAService
     {
-        Task<Root> GetDetailsAsync();
+        Task<RDPAModel> GetDetailsAsync(string input="");
     }
 }
