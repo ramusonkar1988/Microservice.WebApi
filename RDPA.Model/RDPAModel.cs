@@ -50,7 +50,7 @@ namespace RDPA.Model
         public int length { get; set; }
     }
 
-    public class Root
+    public class RDPAModel
     {
         public List<string> rdapConformance { get; set; }
         public List<Notice> notices { get; set; }
@@ -69,7 +69,11 @@ namespace RDPA.Model
         public string objectClassName { get; set; }
         public List<Cidr0Cidrs> cidr0_cidrs { get; set; }
         public List<object> arin_originas0_originautnums { get; set; }
+        public string ErrorMessage { get; set; }
     }
 
-
+    //public class RDPAModel { 
+    
+    //    public Root RDPAData { get; set; }
+    //}
 }

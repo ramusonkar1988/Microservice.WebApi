@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Utility;
 
 namespace Microservice.BaseAPI.Controllers
 {
@@ -23,11 +24,20 @@ namespace Microservice.BaseAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<BaseAPIModel> GetDetails(string input)
+        public async Task<IActionResult> GetDetails(string input)
         {
             BaseAPIModel baseAPIModel = new BaseAPIModel();
             try
             {
+                if (!string.IsNullOrEmpty(input))
+                {
+                    if (!ValidationModel.InputValidation(input))
+                    {
+                        return Ok("Invalid input");
+                    }
+                }
+                
+
                 baseAPIModel = await baseAPIService.GetAPIDetails(input);
             }
             catch (Exception ex)
@@ -36,7 +46,7 @@ namespace Microservice.BaseAPI.Controllers
                 throw;
             }
             
-            return baseAPIModel;
+            return Ok(baseAPIModel);
         }
         
 
